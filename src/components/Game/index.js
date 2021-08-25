@@ -19,13 +19,14 @@ function Game() {
   ];
 
   useEffect(() => {
-    if (squares.filter(Boolean).length === 9) {
+    if (gameStatus.winner) return;
+    else if (squares.filter(Boolean).length === 9 && !gameStatus.winner) {
       setGameStatus({
         finished: true,
         winner: null,
       });
     }
-  }, [squares]);
+  }, [squares, gameStatus]);
 
   const Square = ({ index }) => {
     return (
@@ -43,7 +44,6 @@ function Game() {
     if (gameStatus.finished || squares[index]) return;
     const newSquares = [...squares];
     newSquares[index] = whoGoesNext(newSquares);
-    console.log(newSquares);
 
     if (doWeHaveAWinner(newSquares)) {
       setSquares(newSquares);
