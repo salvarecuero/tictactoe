@@ -76,6 +76,7 @@ function Game() {
   };
 
   function Result() {
+    const [buttonHovered, setButtonHovered] = useState(false);
     return (
       <>
         <span id="result">
@@ -87,9 +88,11 @@ function Game() {
         <button
           id="restart-button"
           onClick={restartGame}
+          onMouseOver={() => setButtonHovered(true)}
+          onMouseOut={() => setButtonHovered(false)}
           title="You know, open it"
         >
-          Restart 🔒
+          Restart {!buttonHovered ? "🔒" : "🔓"}
         </button>
       </>
     );
