@@ -20,7 +20,11 @@ function Game() {
 
   useEffect(() => {
     if (gameStatus.winner) return;
-    else if (squares.filter(Boolean).length === 9 && !gameStatus.winner) {
+    else if (
+      squares.filter(Boolean).length === 9 &&
+      !gameStatus.winner &&
+      !gameStatus.finished
+    ) {
       setGameStatus({
         finished: true,
         winner: null,
